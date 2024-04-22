@@ -18,7 +18,7 @@ const PORT = Number(process.env.POSTGRES_PORT);
       database: process.env.POSTGRES_DATABASE,
       entities: [Customer],
       synchronize: true,
-      // ssl: true,
+      ssl: true,
     }),
     CustomerModule,
   ],
