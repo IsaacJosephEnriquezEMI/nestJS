@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CustomerService } from './customer.service'; // Import CustomerService from './customer.service'
 import { Customer } from '../models/customer.entity';
 import { CreateCustomerDto } from './dto/create-cutomer.dto';
@@ -8,9 +8,10 @@ import { ApiBody, ApiOperation } from '@nestjs/swagger';
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
-  @Get()
-  async getAllCustomers(): Promise<Customer[]> {
-    return this.customerService.getAll();
+  @Get(':tin')
+  @ApiOperation({ summary: 'Query Customer' })
+  async getCustomerById(@Param('tin') tin: string): Promise<Customer> {
+    return this.customerService.getCustomerByTin(tin);
   }
 
   @Post()

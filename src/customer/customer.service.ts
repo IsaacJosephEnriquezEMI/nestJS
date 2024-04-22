@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Customer } from '../models/customer.entity';
@@ -11,10 +11,12 @@ export class CustomerService {
     private customerRepository: Repository<Customer>,
   ) {}
 
-  async getAll(): Promise<Customer[]> {
-    return await this.customerRepository.query('SELECT * FROM customer');
+  async getCustomerByTin(tin: string): Promise<Customer> {
+    return this.customerRepository
+      .createQueryBuilder('customer')
+      .where('customer.tin = :tin', { tin })
+      .getOne();
   }
-
   async createCustomer(
     createCustomerDto: CreateCustomerDto,
   ): Promise<Customer> {
