@@ -45,10 +45,10 @@ export class Invoice {
   @Column({ length: 3 })
   currency: string;
 
-  @Column({})
+  @Column({ nullable: true })
   exchangeRate: number;
 
-  @Column({})
+  @Column({ nullable: true })
   discount: number;
 
   @Column({})
