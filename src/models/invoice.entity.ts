@@ -51,40 +51,40 @@ export class Invoice {
   @Column({ nullable: true })
   discount: number;
 
-  @Column({})
+  @Column({ nullable: true })
   additionalDiscount: number;
 
-  @Column({})
+  @Column({ nullable: true })
   totalDiscount: number;
 
-  @Column({})
+  @Column({ nullable: true })
   totalCharge: number;
 
-  @Column({})
+  @Column({ nullable: true })
   roundingAmount: number;
 
-  @Column({})
+  @Column({ nullable: true })
   totalTax: number;
 
-  @Column({})
+  @Column({ nullable: true })
   additionalFee: number;
 
-  @Column({})
+  @Column({ nullable: true })
   subTotal: number;
 
-  @Column({})
+  @Column({ nullable: true })
   total: number;
 
-  @Column({})
+  @Column({ nullable: true })
   totalExclTax: number;
 
-  @Column({})
+  @Column({ nullable: true })
   totalNetAmount: number;
 
-  @Column({})
+  @Column({ nullable: true })
   totalPayable: number;
 
-  @Column({})
+  @Column({ nullable: true })
   billingDetail: number;
 
   @Column({})
