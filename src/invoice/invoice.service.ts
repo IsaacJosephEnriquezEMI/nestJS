@@ -31,6 +31,6 @@ export class InvoiceService {
       .createQueryBuilder('invoice')
       .where('invoice.status = :status', { status })
       .andWhere('invoice.store = :store', { store })
-      .getMany()
+      .getMany();
   }
 }

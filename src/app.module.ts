@@ -10,7 +10,7 @@ import 'dotenv/config'
 import { Customer } from './models/customer.entity';
 import { Invoice } from './models/invoice.entity';
 import { InvoiceDetails } from './models/invoiceDetails.entity';
-const PORT = Number(process.env.POSTGRES_PORT);
+// const PORT = Number(process.env.POSTGRES_PORT);
 @Module({
   imports: [
     TypeOrmModule.forRoot({
