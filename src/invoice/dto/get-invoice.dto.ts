@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { UUID } from 'crypto';
+import { NumericType } from 'typeorm';
 
 export class CreateInvoiceDto {
   @ApiProperty()

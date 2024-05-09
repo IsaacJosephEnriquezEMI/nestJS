@@ -30,10 +30,10 @@ export class InvoiceDetails {
   @Column({ length: 2 })
   taxType: string;
 
-  @Column({ nullable: true })
+  @Column()
   taxRate: number;
 
-  @Column({ nullable: true })
+  @Column()
   tax: number;
 
   @Column()
@@ -42,28 +42,28 @@ export class InvoiceDetails {
   @Column()
   taxExemptionAmount: number;
 
-  @Column({ nullable: true })
+  @Column()
   subtotal: number;
 
-  @Column({ nullable: true })
+  @Column()
   total: number;
 
-  @Column({ nullable: true })
+  @Column()
   quantity: number;
 
   @Column({ length: 5 })
   uom: string;
 
-  @Column({ nullable: true })
+  @Column()
   discountRate: number;
 
-  @Column({ nullable: true })
+  @Column()
   discount: number;
 
-  @Column({ nullable: true })
+  @Column()
   chargeRate: number;
 
-  @Column({ nullable: true })
+  @Column()
   chargeAmount: number;
 
   @Column({ length: 12 }) // no . symbol)

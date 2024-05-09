@@ -21,7 +21,7 @@ import { InvoiceDetails } from './models/invoiceDetails.entity';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       entities: [Customer, Invoice, InvoiceDetails],
-      synchronize: true,
+      // synchronize: true,
       ssl: true,
     }),
     CustomerModule,

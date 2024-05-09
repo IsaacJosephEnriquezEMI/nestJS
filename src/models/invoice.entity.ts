@@ -45,46 +45,46 @@ export class Invoice {
   @Column({ length: 3 })
   currency: string;
 
-  @Column({ nullable: true })
+  @Column({})
   exchangeRate: number;
 
-  @Column({ nullable: true })
+  @Column({})
   discount: number;
 
-  @Column({ nullable: true })
+  @Column({})
   additionalDiscount: number;
 
-  @Column({ nullable: true })
+  @Column({})
   totalDiscount: number;
 
-  @Column({ nullable: true })
+  @Column({})
   totalCharge: number;
 
-  @Column({ nullable: true })
+  @Column({})
   roundingAmount: number;
 
-  @Column({ nullable: true })
+  @Column({})
   totalTax: number;
 
-  @Column({ nullable: true })
+  @Column({})
   additionalFee: number;
 
-  @Column({ nullable: true })
+  @Column({})
   subTotal: number;
 
-  @Column({ nullable: true })
+  @Column({})
   total: number;
 
-  @Column({ nullable: true })
+  @Column({})
   totalExclTax: number;
 
-  @Column({ nullable: true })
+  @Column({})
   totalNetAmount: number;
 
-  @Column({ nullable: true })
+  @Column({})
   totalPayable: number;
 
-  @Column({ nullable: true })
+  @Column({})
   billingDetail: number;
 
   @Column({})
