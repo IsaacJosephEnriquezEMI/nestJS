@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateInvoiceDetailsDto } from './dto/create-invoice.dto'
 import { Repository } from 'typeorm';
 import { InvoiceDetails } from '../models/invoiceDetails.entity';
 import { UUID } from 'crypto';
@@ -16,5 +17,13 @@ export class InvoiceDetailsService {
       .createQueryBuilder('invoiceDetails')
       .where('invoiceDetails.invoiceNumber = :invoiceNumber', { invoiceNumber })
       .getMany();
+  }
+  async createInvoiceDetails(
+    createInvoiceDetailsDto: CreateInvoiceDetailsDto,
+  ): Promise<InvoiceDetails> {
+    const invoice = this.invoiceDetailsRepository.create(
+      createInvoiceDetailsDto,
+    );
+    return this.invoiceDetailsRepository.save(invoice);
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateInvoiceDto } from './dto/get-invoice.dto';
 import { Repository } from 'typeorm';
 import { Invoice } from '../models/invoice.entity';
 
@@ -32,5 +33,9 @@ export class InvoiceService {
       .where('invoice.status = :status', { status })
       .andWhere('invoice.store = :store', { store })
       .getMany();
+  }
+  async createInvoice(createInvoiceDto: CreateInvoiceDto): Promise<Invoice> {
+    const invoice = this.invoiceRepository.create(createInvoiceDto);
+    return this.invoiceRepository.save(invoice);
   }
 }
