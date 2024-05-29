@@ -22,7 +22,7 @@ import { InvoiceDetails } from './models/invoiceDetails.entity';
       database: process.env.POSTGRES_DATABASE,
       entities: [Customer, Invoice, InvoiceDetails],
       // synchronize: true,
-      ssl: true,
+      //ssl: true,
     }),
     CustomerModule,
     InvoiceModule,

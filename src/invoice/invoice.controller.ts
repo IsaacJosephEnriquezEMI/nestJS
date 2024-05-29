@@ -23,8 +23,71 @@ export class InvoiceController {
   async getInvoiceConsolidated(
     @Param('status') status: string,
     @Param('store') store: string,
-  ): Promise<Invoice[]> {
-    return this.invoiceService.getInvoiceConsolidated(status, store);
+  ): Promise<string> {
+    const initialList = await this.invoiceService.getInvoiceConsolidated(
+      status,
+      store,
+    );
+
+    const totalTotal = initialList.reduce(
+      (sum, invoice) => sum + invoice.total,
+      0,
+    );
+    const totalPayable = initialList.reduce(
+      (sum, invoice) => sum + invoice.totalPayable,
+      0,
+    );
+    const totalTax = initialList.reduce(
+      (sum, invoice) => sum + invoice.totalTax,
+      0,
+    );
+
+    // Add the total sum to the remarks of each invoice
+    initialList.forEach((invoice) => {
+      invoice.remarks = `Total sum of all invoices: ${totalTotal}`;
+    });
+
+    const transformedList = initialList.map((item) => ({
+      item: item.docNo,
+      classification: '022',
+      description: item.docNo,
+      quantity: 1,
+      unitCost: item.totalPayable,
+      uom: 'invoice',
+      taxType: '01',
+      taxRate: 0,
+      discountRate: 0,
+      discountAmount: 0,
+      tax: 0,
+      taxExemptionDetails: '',
+      taxExemptionAmount: 0,
+      discount: 0,
+      chargeRate: 0,
+      chargeAmount: 0,
+      productTariffCode: 'testTariff',
+      originCountry: 'MYS',
+      subTotal: item.total,
+      subTotalWithoutTax: item.total,
+      total: item.total,
+    }));
+
+    const result = {
+      store: '',
+      docNo: '',
+      customerId: '',
+      status: '',
+      paidAt: '',
+      currency: '',
+      totalTax: totalTax,
+      total: totalTotal,
+      TotalPayable: totalPayable,
+      receiptDate: new Date(),
+      invoice: transformedList,
+    };
+
+    const res = JSON.stringify(result);
+
+    return res;
   }
 
   @Post()
