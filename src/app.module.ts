@@ -25,7 +25,7 @@ import { User } from './models/user.entity';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       entities: [Customer, Invoice, InvoiceDetails, Branch, User],
-      //synchronize: true, //to auto create/update table 
+      synchronize: true, //to auto create/update table 
       ssl: true, //Reuired for Connection to hosted database
     }),
     CustomerModule,
