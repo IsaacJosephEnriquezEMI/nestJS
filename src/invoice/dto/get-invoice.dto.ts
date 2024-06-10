@@ -1,105 +1,80 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UUID } from 'crypto';
+import { IsString, IsDecimal, IsDate, Length } from 'class-validator';
 
 export class CreateInvoiceDto {
-  @ApiProperty()
-  readonly id: UUID;
+  @ApiProperty({ description: 'Branch of the invoice', maxLength: 12 })
+  @IsString()
+  @Length(1, 100)
+  branch: string;
 
-  @ApiProperty()
-  readonly store: string;
+  @ApiProperty({ description: 'Invoice number', maxLength: 12 })
+  @IsString()
+  @Length(1, 12)
+  invoiceNumber: string;
 
-  @ApiProperty()
-  readonly invoiceStatus: string;
+  @ApiProperty({ description: 'Processing status of the invoice' })
+  @IsString()
+  processingStatus: string;
 
-  @ApiProperty()
-  readonly docNo: string;
-  // types are invoce, pro-forma etc
-  type: string;
+  @ApiProperty({
+    description: 'Smart Invoice Cutomer Id of the customer',
+    type: 'string',
+  })
+  @IsString()
+  @Length(1, 100)
+  customerId: string;
 
-  @ApiProperty()
-  readonly customerId: string;
+  @ApiProperty({ description: 'Currency code', maxLength: 3 })
+  @IsString()
+  @Length(3, 3)
+  currency: string;
 
-  @ApiProperty()
-  readonly createdAt: Date;
+  @ApiProperty({ description: 'Total tax', type: 'number', format: 'decimal' })
+  @IsDecimal()
+  totalTax: number;
 
-  @ApiProperty()
-  readonly status: string;
+  @ApiProperty({
+    description: 'Total net amount',
+    type: 'number',
+    format: 'decimal',
+  })
+  @IsDecimal()
+  totalNet: number;
 
-  @ApiProperty()
-  readonly paidAt: Date;
+  @ApiProperty({
+    description: 'Invoice amount',
+    type: 'number',
+    format: 'decimal',
+  })
+  @IsDecimal()
+  invoiceAmount: number;
 
-  @ApiProperty()
-  readonly dueAt: Date;
+  @ApiProperty({
+    description: 'Date of the invoice',
+    type: 'string',
+    format: 'date-time',
+  })
+  @IsDate()
+  invoiceDate: Date;
 
-  @ApiProperty()
-  readonly referenceDocNo: string;
+  @ApiProperty({ description: 'Remarks', maxLength: 255 })
+  @IsString()
+  @Length(0, 255)
+  remarks: string;
 
-  @ApiProperty()
-  readonly currency: string;
+  @ApiProperty({
+    description: 'Creation date',
+    type: 'string',
+    format: 'date-time',
+  })
+  @IsDate()
+  createdDate: Date;
 
-  @ApiProperty()
-  readonly exchangeRate: number;
-
-  @ApiProperty()
-  readonly discount: number;
-
-  @ApiProperty()
-  readonly additionalDiscount: number;
-
-  @ApiProperty()
-  readonly totalDiscount: number;
-
-  @ApiProperty()
-  readonly totalCharge: number;
-
-  @ApiProperty()
-  readonly roundingAmount: number;
-
-  @ApiProperty()
-  readonly totalTax: number;
-
-  @ApiProperty()
-  readonly additionalFee: number;
-
-  @ApiProperty()
-  readonly subTotal: number;
-
-  @ApiProperty()
-  readonly total: number;
-
-  @ApiProperty()
-  readonly totalExclTax: number;
-
-  @ApiProperty()
-  readonly totalNetAmount: number;
-  
-  @ApiProperty()
-  readonly totalPayable: number;
-
-  @ApiProperty()
-  readonly billingDetail: number;
-
-  @ApiProperty()
-  readonly prePaymentDetail: number;
-
-  @ApiProperty()
-  readonly taxDetails: number;
-
-  @ApiProperty()
-  readonly paymentMode: number;
-
-  @ApiProperty()
-  readonly paymentTerms: string;
-
-  @ApiProperty()
-  readonly billReferenceNumber: string;
-
-  @ApiProperty()
-  readonly remarks: string;
-
-  @ApiProperty()
-  readonly created_at: Date;
-
-  @ApiProperty()
-  readonly updated_at: Date;
+  @ApiProperty({
+    description: 'Last updated date',
+    type: 'string',
+    format: 'date-time',
+  })
+  @IsDate()
+  updatedDate: Date;
 }

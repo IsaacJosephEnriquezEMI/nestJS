@@ -10,6 +10,10 @@ import 'dotenv/config'
 import { Customer } from './models/customer.entity';
 import { Invoice } from './models/invoice.entity';
 import { InvoiceDetails } from './models/invoiceDetails.entity';
+import { UserModule } from './user/user.module';
+import { BranchModule } from './branch/branch.module';
+import { Branch } from './models/branch.entity';
+import { User } from './models/user.entity';
 // const PORT = Number(process.env.POSTGRES_PORT);
 @Module({
   imports: [
@@ -20,13 +24,15 @@ import { InvoiceDetails } from './models/invoiceDetails.entity';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      entities: [Customer, Invoice, InvoiceDetails],
-      // synchronize: true,
-      ssl: true,
+      entities: [Customer, Invoice, InvoiceDetails, Branch, User],
+      //synchronize: true, //to auto create/update table 
+      ssl: true, //Reuired for Connection to hosted database
     }),
     CustomerModule,
     InvoiceModule,
-    InvoiceDetailsModule
+    InvoiceDetailsModule,
+    BranchModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],

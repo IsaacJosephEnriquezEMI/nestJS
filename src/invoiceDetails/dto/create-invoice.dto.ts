@@ -1,55 +1,77 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsDate, IsDecimal, IsString, Length } from 'class-validator';
 import { UUID } from 'crypto';
 
 export class CreateInvoiceDetailsDto {
-  @ApiProperty()
-  readonly id: UUID;
+  @ApiProperty({
+    description: 'Invoice number',
+    maxLength: 255,
+  })
+  @IsString()
+  @Length(1, 255)
+  invoiceNumber: UUID;
 
-  @ApiProperty()
-  readonly invoiceNumber: string;
+  @ApiProperty({
+    description: 'Item Name',
+    maxLength: 255,
+  })
+  @IsString()
+  @Length(1, 255)
+  item: string;
 
-  @ApiProperty()
-  readonly item: string;
-  @ApiProperty()
-  readonly classification: string;
-  @ApiProperty()
-  readonly description: string;
-  @ApiProperty()
-  readonly unitCost: number;
-  @ApiProperty()
-  readonly taxType: string;
-  @ApiProperty()
-  readonly taxRate: number;
-  @ApiProperty()
-  readonly tax: number;
-  @ApiProperty()
-  readonly taxExemptionReason: string;
-  @ApiProperty()
-  readonly taxExemptionAmount: number;
-  @ApiProperty()
-  readonly subtotal: number;
-  @ApiProperty()
-  readonly total: number;
-  @ApiProperty()
-  readonly quantity: number;
-  @ApiProperty()
-  readonly uom: string;
-  @ApiProperty()
-  readonly discountRate: number;
-  @ApiProperty()
-  readonly discount: number;
-  @ApiProperty()
-  readonly chargeRate: number;
-  @ApiProperty()
-  readonly chargeAmount: number;
-  @ApiProperty()
-  readonly productTariffCode: string;
-  @ApiProperty()
-  readonly originCountry: string;
+  @ApiProperty({
+    description: 'Item Description',
+    maxLength: 255,
+  })
+  @IsString()
+  @Length(1, 255)
+  description: string;
 
-  @ApiProperty()
-  readonly created_at: Date;
+  @ApiProperty({
+    description: 'Item Quantity',
+    type: 'number',
+    format: 'decimal',
+  })
+  @IsDecimal()
+  quantity: number;
 
-  @ApiProperty()
-  readonly updated_at: Date;
+  @ApiProperty({
+    description: 'Item Unit of Measure',
+    maxLength: 255,
+  })
+  @IsString()
+  @Length(1, 255)
+  unitOfMeasure: string;
+
+  @ApiProperty({
+    description: 'Item Cost',
+    type: 'number',
+    format: 'decimal',
+  })
+  @IsDecimal()
+  unitCost: number;
+
+  @ApiProperty({
+    description: 'Item Total Cost',
+    type: 'number',
+    format: 'decimal',
+  })
+  @IsDecimal()
+  totalCost: number;
+
+  @ApiProperty({
+    description: 'Creation date',
+    type: 'string',
+    format: 'date-time',
+  })
+  @IsDate()
+  createdDate: Date;
+
+  @ApiProperty({
+    description: 'Last updated date',
+    type: 'string',
+    format: 'date-time',
+  })
+  @IsDate()
+  updatedDate: Date;
 }

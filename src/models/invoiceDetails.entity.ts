@@ -12,69 +12,30 @@ export class InvoiceDetails {
   @PrimaryGeneratedColumn('uuid')
   id: UUID;
 
-  @Column() //invoice id
+  @Column({ type: 'varchar', length: 255 }) //invoice id
   invoiceNumber: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   item: string;
 
-  @Column({ length: 3 })
-  classification: string;
-
-  @Column({ length: 300 })
+  @Column({ type: 'varchar', length: 255 })
   description: string;
 
-  @Column()
-  unitCost: number;
-
-  @Column({ length: 2 })
-  taxType: string;
-
-  @Column()
-  taxRate: number;
-
-  @Column()
-  tax: number;
-
-  @Column()
-  taxExemptionReason: string;
-
-  @Column()
-  taxExemptionAmount: number;
-
-  @Column()
-  subtotal: number;
-
-  @Column()
-  total: number;
-
-  @Column()
+  @Column({ type: 'decimal', precision: 12, scale: 2 })
   quantity: number;
 
-  @Column({ length: 5 })
-  uom: string;
+  @Column({ type: 'varchar' })
+  unitOfMeasure: string;
 
-  @Column()
-  discountRate: number;
+  @Column({ type: 'decimal', precision: 12, scale: 2 })
+  unitCost: number;
 
-  @Column()
-  discount: number;
-
-  @Column()
-  chargeRate: number;
-
-  @Column()
-  chargeAmount: number;
-
-  @Column({ length: 12 }) // no . symbol)
-  productTariffCode: string;
-
-  @Column({ length: 3 })
-  originCountry: string;
+  @Column({ type: 'decimal', precision: 12, scale: 2 })
+  totalCost: number;
 
   @CreateDateColumn({ type: 'timestamp with time zone' })
-  created_at: Date;
+  createdDate: Date;
 
   @UpdateDateColumn({ type: 'timestamp with time zone' })
-  updated_at: Date;
+  updatedDate: Date;
 }
